@@ -7,12 +7,14 @@ services:
     build: ./web/main
     volumes:
       - ./main/html:/var/www/html
+      - ./web/main/etc/nginx/conf.d:/etc/nginx/conf.d
   web1:
     ports:
       - "81:80"
     build: ./web/node
     volumes:
       - ./web/node/html:/var/www/node/html
+      - ./web/node/etc/nginx/conf.d:/etc/nginx/conf.d
   db:
     image: mysql
     volumes:
