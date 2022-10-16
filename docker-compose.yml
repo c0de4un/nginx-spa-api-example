@@ -6,14 +6,21 @@ services:
       - "80:80"
     build: ./web/main
     volumes:
-      - ./main/html:/var/www/html
+      - ./main/html:/usr/share/nginx/html
       - ./web/main/etc/nginx/conf.d:/etc/nginx/conf.d
   web1:
     ports:
       - "81:80"
     build: ./web/node
     volumes:
-      - ./web/node/html:/var/www/node/html
+      - ./web/node/html:/usr/share/nginx/html
+      - ./web/node/etc/nginx/conf.d:/etc/nginx/conf.d
+  web2:
+    ports:
+      - "82:80"
+    build: ./web/node
+    volumes:
+      - ./web/node/html:/usr/share/nginx/html
       - ./web/node/etc/nginx/conf.d:/etc/nginx/conf.d
   db:
     image: mysql
