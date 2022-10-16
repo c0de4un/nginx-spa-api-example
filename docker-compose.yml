@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  main:
+    ports:
+      - "80:80"
+    build: ./web/main
+    volumes:
+      - ./main/html:/var/www/html
+  web1:
+    ports:
+      - "81:80"
+    build: ./web/node
+    volumes:
+      - ./web/node/html:/var/www/node/html
+  db:
+    image: mysql
+    volumes:
+      - ./db/data:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=on
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 85:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
